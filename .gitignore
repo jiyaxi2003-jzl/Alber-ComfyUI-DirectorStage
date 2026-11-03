@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 测试运行时产物（tests/ui_*.py 会往这里写截图）
+shots/
+
+# 演示素材可由 demo/make_demo.py 重新生成，但保留一份方便直接打开演示页
+# demo/assets/
+# demo/still.png
+
+# 本地跑场景留下的东西
+demo/scene_local.json
+output/
+*.log
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

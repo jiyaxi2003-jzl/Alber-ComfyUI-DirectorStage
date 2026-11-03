@@ -1,0 +1,199 @@
+{
+ "version": 1,
+ "fps": 24.0,
+ "frame_size": [
+  1280,
+  720
+ ],
+ "camera": {
+  "position": [
+   0.0,
+   1.5,
+   32.48
+  ],
+  "target": [
+   0.0,
+   1.4,
+   0.0
+  ],
+  "lens_mm": 40.0,
+  "vfov": 33.39848846798724,
+  "near": 0.05,
+  "far": 200.0,
+  "path": [
+   {
+    "t": 0.0,
+    "position": [
+     0.0,
+     1.5,
+     32.48000044822693
+    ],
+    "target": [
+     0.0,
+     1.4,
+     0.0
+    ],
+    "vfov": null
+   }
+  ]
+ },
+ "objects": [
+  {
+   "id": "card_0",
+   "kind": "card",
+   "label": "深度层 1（近）",
+   "image": "card_0.png",
+   "subfolder": "",
+   "depth": 9.979,
+   "position": [
+    0.0,
+    1.469,
+    22.501
+   ],
+   "rotation": [
+    -0.18,
+    -0.0,
+    -0.0
+   ],
+   "scale": [
+    0.00831583796441555,
+    0.00831583796441555,
+    1.0
+   ],
+   "opacity": 1.0
+  },
+  {
+   "id": "card_1",
+   "kind": "card",
+   "label": "深度层 2（中）",
+   "image": "card_1.png",
+   "subfolder": "",
+   "depth": 23.659,
+   "position": [
+    0.0,
+    1.427,
+    8.821
+   ],
+   "rotation": [
+    -0.18,
+    -0.0,
+    -0.0
+   ],
+   "scale": [
+    0.01971583795547485,
+    0.019715837955474852,
+    1.0
+   ],
+   "opacity": 1.0
+  },
+  {
+   "id": "card_2",
+   "kind": "card",
+   "label": "深度层 3（远）",
+   "image": "card_2.png",
+   "subfolder": "",
+   "depth": 30.0,
+   "position": [
+    0.0,
+    1.408,
+    2.48
+   ],
+   "rotation": [
+    -0.18,
+    -0.0,
+    -0.0
+   ],
+   "scale": [
+    0.025,
+    0.025,
+    1.0
+   ],
+   "opacity": 1.0
+  },
+  {
+   "id": "ground",
+   "kind": "plane",
+   "label": "地面",
+   "size": 36.0,
+   "position": [
+    0.0,
+    0.0,
+    20.48
+   ],
+   "color": [
+    58,
+    62,
+    72
+   ]
+  },
+  {
+   "id": "subject",
+   "kind": "mannequin",
+   "label": "主体替身",
+   "position": [
+    -1.15,
+    0.0,
+    22.5
+   ],
+   "rotation": [
+    0.0,
+    16.0,
+    0.0
+   ],
+   "height": 1.78,
+   "pose": "站立",
+   "opacity": 1.0
+  }
+ ],
+ "lights": [
+  {
+   "type": "ambient",
+   "intensity": 0.55,
+   "color": [
+    1.0,
+    0.98,
+    0.95
+   ]
+  },
+  {
+   "type": "directional",
+   "direction": [
+    -0.4,
+    -0.9,
+    -0.5
+   ],
+   "intensity": 1.1,
+   "color": [
+    1.0,
+    0.97,
+    0.9
+   ]
+  }
+ ],
+ "meta": {
+  "scene_id": "demo",
+  "asset_subfolder": "",
+  "source": "still.png",
+  "frames_used": 1,
+  "depth_backend": "演示用手工深度",
+  "camera_track": {
+   "method": "fallback",
+   "matches": [],
+   "inliers": [],
+   "translation": 0.0,
+   "notes": [
+    "帧数不足或缺少 OpenCV，使用兜底轨迹"
+   ]
+  },
+  "motion": "固定机位",
+  "depth_range": [
+   1.2,
+   30.0
+  ],
+  "subject_box": null,
+  "aspect": 1.7778,
+  "notes": [],
+  "ref_frame": "ref_frame.png",
+  "subject_ref": ""
+ }
+}

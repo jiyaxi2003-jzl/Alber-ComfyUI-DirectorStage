@@ -1,0 +1,26 @@
+[project]
+name = "comfyui-alber-directorstage"
+version = "1.0.0"
+description = "把一段 MP4 逆向成可转可摆的 2.5D 分层场景，在 3D 导演台里改机位/人物，输出预演图与 MiniMax H3 ref2va 参考包"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python>=4.8",
+]
+
+[project.optional-dependencies]
+av = ["av>=10.0"]
+model = ["transformers>=4.40"]
+
+[project.urls]
+Repository = "https://github.com/jiyaxi2003-jzl/ComfyUI-Alber-DirectorStage"
+Issues = "https://github.com/jiyaxi2003-jzl/ComfyUI-Alber-DirectorStage/issues"
+
+# ComfyUI Manager / Registry 元数据。
+# 若要发布到 ComfyUI Registry，需先在 https://registry.comfy.org 注册 publisher，
+# 再把 PublisherId 改成注册时拿到的 ID，然后 `comfy node publish`。
+[tool.comfy]
+PublisherId = "jiyaxi2003-jzl"
+DisplayName = "Alber DirectorStage (3D 导演台)"
+requires-comfyui = ">=0.3.0"

@@ -1,0 +1,36 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Python 侧只做语法编译，不需要装 torch / opencv
+      - name: Python 语法
+        run: python -m compileall -q __init__.py dir_nodes.py director3d tests
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 前端语法（ES module）
+        run: |
+          set -e
+          for f in web/js/director_stage.js web/js/director/console.js web/js/director/rig.js; do
+            cp "$f" "/tmp/$(basename "$f").mjs"
+            node --check "/tmp/$(basename "$f").mjs"
+            echo "OK $f"
+          done
+
+      - name: 示例工作流是合法 JSON
+        run: python -c "import json;json.load(open('example_workflows/director_h3_ref2v.json',encoding='utf-8'));print('ok')"

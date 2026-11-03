@@ -1,0 +1,31 @@
+{
+  "client_id": "uitest",
+  "prompt": {
+    "1": {
+      "class_type": "DirectorVideoToScene",
+      "inputs": {
+        "video": "dstage_ui_test.mp4",
+        "max_frames": 12,
+        "long_side": 960,
+        "lens_mm": 50.0,
+        "aspect": "16:9",
+        "layers": 3,
+        "near": 1.5,
+        "far": 26.0,
+        "ref_index": 0,
+        "depth_backend": "flow",
+        "include_ground": true,
+        "add_subject": true,
+        "scene_tag": "uitest"
+      }
+    },
+    "2": {
+      "class_type": "DirectorStage",
+      "inputs": {"scene": ["1", 0], "state": "", "lens_mm": 50.0, "shot_count": 3}
+    },
+    "3": {
+      "class_type": "PreviewImage",
+      "inputs": {"images": ["1", 1]}
+    }
+  }
+}

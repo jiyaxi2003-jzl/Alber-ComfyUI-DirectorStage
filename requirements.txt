@@ -1,0 +1,7 @@
+# 核心（ComfyUI 环境通常已装 numpy / torch / pillow）
+numpy>=1.24
+opencv-python>=4.8
+# 可选：视频解码更快更稳，缺省会退回 OpenCV
+av>=10.0
+# 可选：depth_backend=model 时用（离线环境请改用 flow，或把深度图接 depth_in）
+# transformers>=4.40

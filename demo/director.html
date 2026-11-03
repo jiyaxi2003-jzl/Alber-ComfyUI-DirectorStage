@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Alber-3D 导演台 · 本地演示</title>
+<link rel="stylesheet" href="../web/css/director.css">
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: #0b0d10; color: #dfe5ec;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+  .bar { display: flex; align-items: center; gap: 14px; padding: 12px 18px;
+    border-bottom: 1px solid #1f242b; font-size: 13px; }
+  .bar b { font-weight: 500; }
+  .bar span { color: #7b8794; font-size: 12px; }
+  .bar button { margin-left: auto; background: #1f6f5c; border: 1px solid #2a8f76;
+    color: #eafff8; border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; }
+  .wrap { padding: 22px; display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
+  .card { background: #12161b; border: 1px solid #242a32; border-radius: 12px; padding: 14px; width: 520px; }
+  .card h3 { margin: 0 0 8px; font-size: 13px; font-weight: 500; color: #a9b6c4; }
+  .card p { margin: 6px 0 0; font-size: 12px; line-height: 1.7; color: #6f7d8b; }
+  img { width: 100%; border-radius: 8px; display: block; }
+  code { background: #1a2028; padding: 1px 5px; border-radius: 4px; font-size: 11px; color: #9ecfb8; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <b>Alber-3D 导演台 · 本地演示</b>
+  <span id="meta">载入中…</span>
+  <button id="open">打开导演台</button>
+</div>
+<div class="wrap">
+  <div class="card">
+    <h3>输入：一帧"影片画面"</h3>
+    <img src="./still.png" alt="demo still">
+    <p>演示用的合成画面。真实流程里这一层来自 MP4：<code>视频转3D</code> 节点会抽帧、估深度、估相机轨迹，
+      再把它切成 2~4 层深度卡片。</p>
+  </div>
+  <div class="card">
+    <h3>它能做什么</h3>
+    <p>
+      点右上角「打开导演台」：<br>
+      · 拖动环绕全场，滚轮缩放，右键平移<br>
+      · 「机位」模式拖动橙色球改看向点；改焦距看构图变化<br>
+      · 「取当前视角为机位」把当前视角变成这个镜头<br>
+      · 「物体」模式选中人物替身，改位置 / 身高 / 姿势<br>
+      · 底部时间轴攒机位关键帧，回到 ComfyUI 后点「保存到节点」，
+        预演图会按新机位重新渲染，直接接 MiniMax H3 的 <code>&lt;Picture N&gt;</code> 参考。
+    </p>
+    <p id="saved" style="color:#8fd6b6"></p>
+  </div>
+</div>
+<script type="module">
+import { openDirectorConsole } from "../web/js/director/console.js";
+
+const res = await fetch("./scene.json", { cache: "no-store" });
+const scene = await res.json();
+document.getElementById("meta").textContent =
+  `${scene.objects.length} 个对象 · ${Math.round(scene.camera.lens_mm)}mm · ${scene.camera.path?.length || 0} 帧轨迹`;
+
+let inst = null;
+function open() {
+  const prior = localStorage.getItem("ds_demo_state");
+  inst = openDirectorConsole({
+    scene,
+    assetBase: "./assets",
+    onSave: (payload) => {
+      localStorage.setItem("ds_demo_state", payload);
+      const st = JSON.parse(payload);
+      document.getElementById("saved").textContent =
+        `已保存：机位 ${st.camera.position.map(v => v.toFixed(2)).join(", ")} · ${st.camera.lens_mm}mm`;
+    },
+  });
+}
+document.getElementById("open").onclick = open;
+open();
+</script>
+</body>
+</html>
